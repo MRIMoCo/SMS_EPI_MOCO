@@ -57,10 +57,10 @@ function recon_slice=DoSENSE_SMS(coilSen, KSpaceDATA, sliceOrderSMS, prot)%
             coilSen_SingleSlice(:,:,:,1:end)=coilSen(:,:,:,sliceOrderSMS((iSMS-1)*prot.lMultiBandFactor+1:iSMS*prot.lMultiBandFactor));
         end
         if prot.lMultiBandFactor==2
-            coilSen_SingleSlice(:,:,:,2)=(circshift(coilSen_SingleSlice(:,:,:,2),[0,-ny/2+1,0]));%-ny/4+1 (circshift(coilSen_SingleSlice(:,:,:,2),[0,-ny/4+1,0]));
+            coilSen_SingleSlice(:,:,:,2)=(circshift(coilSen_SingleSlice(:,:,:,2),[0,-ny/2,0]));
         elseif prot.lMultiBandFactor==3
             %CAIPIshifts= [0,pi*2/3,pi*4/3];
-              coilSen_SingleSlice(:,:,:,2)=(circshift(coilSen_SingleSlice(:,:,:,2),[0,-ny/2+1,0]));
+              coilSen_SingleSlice(:,:,:,2)=(circshift(coilSen_SingleSlice(:,:,:,2),[0,-ny/2,0]));
               coilSen_SingleSlice(:,:,:,3)=(circshift(coilSen_SingleSlice(:,:,:,3),[0,0,0]));
         elseif prot.lMultiBandFactor==4
             %CAIPIshifts= [0,pi*2/3,pi*4/3];
