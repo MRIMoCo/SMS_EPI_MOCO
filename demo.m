@@ -64,19 +64,19 @@ title('SMS-SENSE Recon with uCSMs', 'FontSize',20);
 
 %%
 %Split Slice-GRAPPA Recon 
-%SSG Recon with original CSM (oCSM)
+%SP-SG Recon with original CSM (oCSM)
 recon_slice_oCSM_SSG=SMS_Recon_GRAPPA(coilSen_ori,prot,out);
 figure(30);
 showimagefft(recon_slice_oCSM_SSG,0);
 %showimagefft(recon_slice_oCSM,0,1,gray,1,0,0,'');
 title('Split Slice-GRAPPA Recon with oCSMs', 'FontSize',20);
 %%
-%SSG Recon with original CSM (oCSM)
+%SP-SG Recon with updated CSM (uCSM)
 recon_slice_uCSM_SSG=SMS_Recon_GRAPPA(coilSen_Update,prot,out);
 figure(40);
 showimagefft(recon_slice_uCSM_SSG,0);
 %showimagefft(recon_slice_oCSM,0,1,gray,1,0,0,'');
-title('Split Slice-GRAPPA Recon with oCSMs', 'FontSize',20);
+title('Split Slice-GRAPPA Recon with uCSMs', 'FontSize',20);
 
 %%
 %single-slice images acquired in pre-scan
@@ -84,6 +84,5 @@ figure(50);
 showimagefft(kdata_sliceimg_sens,1);
 %showimagefft(recon_slice_oCSM,0,1,gray,1,0,0,'');
 title('Single-slice reference', 'FontSize',20);
-
 
 
