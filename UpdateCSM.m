@@ -20,7 +20,7 @@ function coilSen_Update = UpdateCSM(coilSen,prot,out,IsSmooth,array_timestamp,Mo
     coilSen_thresh=0.03;%for cloi mask
     [tukey_window,tukey_window_red]=filter_2D(prot.Nphase);
     [coilSen_matrix,coilSen_OriCor,coilSen_1,slcPos_matZ,mask_coilSen,mask_slice]=getCoilSen(mask_thresh,coilSen_thresh,tukey_window,0,0,0,coilSen,out.kdata_sliceimg,prot.lMultiBandFactor,prot,IsSmooth);
-    %uodated CSM multiply mask option
+    %updated CSM multiply mask option
     IsMask=1;
     %CSM normalization
     IsNormalization=1;
@@ -131,4 +131,3 @@ function coilSen_Update = UpdateCSM(coilSen,prot,out,IsSmooth,array_timestamp,Mo
     end
     coilSen_Update=permute(coilSen_Update,[1,2,4,3]);
 end
-
