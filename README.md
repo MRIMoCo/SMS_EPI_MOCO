@@ -20,4 +20,4 @@ DoSENSE_SMS.m is to reconstruct SMS aliased images by SENSE method.
 DoSplitSliceGrappa.m is to reconstruct SMS aliased images by split slice-GRAPPA method
 
 Please contact me if you have any questions.
-bli@som.umaryland.edu
+bli@som.umaryland.edu or xingkongpku@gmail.com
