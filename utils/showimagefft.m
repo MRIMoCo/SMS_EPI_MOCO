@@ -89,6 +89,11 @@ function showimagefft(kspace, fftparam, flipparam, cmap_or_jet, flipabs, isSameS
         minV = min(sqrtSum_min_max(:));
         maxV = max(sqrtSum_min_max(:));
         rangeV = maxV - minV;
+%         if cmap==0
+%             thismap = colormap(gray(256));
+%         else
+%             thismap = colormap(jet);
+%         end
         thismap = colormap(gray(256));
         maxcol = size(thismap, 1) - 1;
         sqrtSum_min_max=uint8(floor((sqrtSum_min_max(:) - minV) ./ rangeV .* maxcol));
@@ -125,7 +130,11 @@ function showimagefft(kspace, fftparam, flipparam, cmap_or_jet, flipabs, isSameS
         for irow=1:nrow
             for icol=1:ncol
                 iIndex=(irow-1)*ncol+icol;
-                showMatrix((irow-1)*nx+1:irow*nx,(icol-1)*ny+1:icol*ny)=flip((sqrtSum_min_max(:,:,iIndex))');
+                if isflipabs==1
+                    showMatrix((irow-1)*nx+1:irow*nx,(icol-1)*ny+1:icol*ny)=flip((sqrtSum_min_max(:,:,iIndex))');
+                else
+                    showMatrix((irow-1)*nx+1:irow*nx,(icol-1)*ny+1:icol*ny)=sqrtSum_min_max(:,:,iIndex);
+                end
                 if iIndex==-1
                     img_cur=sqrtSum(kspace(:,:,:,iIndex),isfft,isflipabs)';
                     tmp_img_cur=(img_cur(:)-min(img_cur(:)))/(max(img_cur(:))-min(img_cur(:)));
@@ -143,13 +152,17 @@ function showimagefft(kspace, fftparam, flipparam, cmap_or_jet, flipabs, isSameS
                 end
             end
         end
-        imshow(showMatrix,[]);colorbar;
-        for irow=1:nrow
-            for icol=1:ncol
-                iIndex=(irow-1)*ncol+icol;
-                text((icol-1)*ny+10,(irow-1)*nx+10,num2str(iIndex),'FontSize',12,'Color','white')
-            end
+        if (cmap==1)
+            imshow(showMatrix,[]);colormap jet;colorbar;
+        else
+            imshow(showMatrix,[]);colormap gray;colorbar;
         end
+%         for irow=1:nrow
+%             for icol=1:ncol
+%                 iIndex=(irow-1)*ncol+icol;
+%                 text((icol-1)*ny+10,(irow-1)*nx+10,num2str(iIndex),'FontSize',12,'Color','white')
+%             end
+%         end
     else
     
     if isSaveImage==0
