@@ -9,6 +9,7 @@
 %%%%%% interpolation. Magn Reson Med. 2023;1-17. doi:10.1002/mrm.29789"
 %%%%%% Created on Sep. 22, 2022
 %%%%%% bli@som.umaryland.edu
+%%%%%% or xingkongpku@gmail.com
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%
