@@ -4,8 +4,9 @@
 %%%%%% An example for SMS-EPI motion correction
 %%%%%%
 %%%%%% Written by: Bo Li, University of Maryland, Baltimore
-%%%%%% for manuscript "SMS-EPI prospective motion correction 
-%%%%%% by real-time phase compensation and coil sensitivity map interpolation"
+%%%%%% for paper "Simultaneous multislice EPI prospective motion correction 
+%%%%%% by real‐time receiver phase correction and coil sensitivity map
+%%%%%% interpolation. Magn Reson Med. 2023;1-17. doi:10.1002/mrm.29789"
 %%%%%% Created on Sep. 22, 2022
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -36,11 +37,12 @@ kdata_sliceimg_sens=out.kdata_sliceimg;
 coilSen_ori=CalCoilSens(permute(kdata_sliceimg_sens,[1,2,4,3]),ksize,eigThresh_k,eigThresh_im);
 
 %%
-%interpolating CSM with motion parameters to get updated CSM
+%interpolating (extrapolating) CSM with motion parameters to get updated CSM
 IsSmooth=1; %smooth the coil sensitivity
 IsUpdateCoilSen=1;
 coilSen_Update = UpdateCSM(coilSen_ori,prot,out,IsSmooth,array_timestamp,MotionData,IsUpdateCoilSen);
 %smooth coilSen_ori
+IsSmooth=1;
 IsUpdateCoilSen=0;
 coilSen_ori=UpdateCSM(coilSen_ori,prot,out,IsSmooth,array_timestamp,MotionData,IsUpdateCoilSen);
 
@@ -50,7 +52,7 @@ coilSen_ori=UpdateCSM(coilSen_ori,prot,out,IsSmooth,array_timestamp,MotionData,I
 %SMS-SENSE Recon with original CSM (oCSM)
 recon_slice_oCSM=SMS_Recon_SENSE(coilSen_ori,prot,out);
 figure(10);
-showimagefft(recon_slice_oCSM,0);
+showimagefft(recon_slice_oCSM,0);%kspace, fftparam, flipparam, cmap_or_jet, flipabs, isSameScale,IsSaveImageToDisk, folder_name
 %showimagefft(recon_slice_oCSM,0,1,gray,1,0,0,'');
 title('SMS-SENSE Recon with oCSMs', 'FontSize',20);
 
@@ -79,10 +81,10 @@ showimagefft(recon_slice_uCSM_SSG,0);
 title('Split Slice-GRAPPA Recon with uCSMs', 'FontSize',20);
 
 %%
-%single-slice images acquired in pre-scan
+%single-slice images acquired in pre-scan, used for SMS reconstruction
 figure(50);
 showimagefft(kdata_sliceimg_sens,1);
 %showimagefft(recon_slice_oCSM,0,1,gray,1,0,0,'');
-title('Single-slice reference', 'FontSize',20);
+title('Single-slice reference images', 'FontSize',20);
 
 
